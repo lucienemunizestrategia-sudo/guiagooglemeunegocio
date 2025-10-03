@@ -257,25 +257,64 @@
             margin-bottom: 20px;
         }
 
-        /* Screenshot placeholder */
-        .screenshot {
-            background: var(--cinza-neutro);
-            border: 3px dashed var(--azul-secundaria);
-            border-radius: 15px;
-            padding: 60px 40px;
-            text-align: center;
-            margin: 30px 0;
+        .step-content h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 22px;
+            margin: 30px 0 15px;
             color: var(--azul-principal);
-            font-weight: 600;
-            font-size: 18px;
         }
 
-        .screenshot img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
+        /* Visual Box - substitui imagens */
+        .visual-box {
+            background: linear-gradient(135deg, var(--cinza-neutro) 0%, #e0e8ef 100%);
+            border: 3px solid var(--azul-secundaria);
+            border-radius: 15px;
+            padding: 50px 40px;
+            text-align: center;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .visual-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0, 183, 215, 0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .visual-box-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .visual-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
             display: block;
-            margin: 0 auto;
+        }
+
+        .visual-box h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 22px;
+            color: var(--azul-principal);
+            margin-bottom: 10px;
+        }
+
+        .visual-box p {
+            font-size: 16px;
+            color: var(--azul-escuro);
+            opacity: 0.8;
         }
 
         /* Alert Box */
@@ -394,6 +433,32 @@
             margin-bottom: 10px;
         }
 
+        /* Example correct/incorrect */
+        .example-box {
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+        }
+
+        .example-box p {
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .example-correct {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            color: #155724;
+        }
+
+        .example-incorrect {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            color: #721c24;
+        }
+
         /* Footer */
         .footer {
             background: var(--azul-escuro);
@@ -440,6 +505,7 @@
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s;
+            z-index: 999;
         }
 
         .back-to-top.visible {
@@ -476,6 +542,10 @@
                 font-size: 32px;
             }
 
+            .section {
+                padding: 50px 20px;
+            }
+
             .nav-menu {
                 display: none;
             }
@@ -495,6 +565,10 @@
 
             .feature-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .visual-icon {
+                font-size: 60px;
             }
         }
     </style>
@@ -608,32 +682,205 @@
                         </a>
                     </div>
 
-                    <div class="screenshot">
-                        📸 Imagem: Captura de tela da página inicial do Google Meu Negócio
-                        <br><br>
-                        <!-- Substitua este bloco pela tag <img> quando tiver a imagem:
-                        <img src="images/passo1-google-business.png" alt="Tela inicial Google Meu Negócio">
-                        -->
+                    <div class="visual-box">
+                        <div class="visual-box-content">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=400&fit=crop" alt="Página inicial Google Meu Negócio" style="max-width: 100%; border-radius: 10px; margin-top: 20px;">
+                            <h4 style="margin-top: 20px;">Página Inicial do Google Meu Negócio</h4>
+                            <p>Ao acessar, você verá a opção de criar ou reivindicar sua empresa</p>
+                        </div>
                     </div>
 
-                    <h4 style="font-family: 'Montserrat', sans-serif; font-size: 22px; margin: 30px 0 20px; color: var(--azul-principal);">Tipos de postagens:</h4>
+                    <h4>Duas situações possíveis:</h4>
+                    
+                    <div class="grid-2">
+                        <div class="feature-card" style="border-left-color: #28A745;">
+                            <h3>A) Empresa já listada</h3>
+                            <p>Reivindique a ficha existente seguindo o passo a passo de verificação do Google</p>
+                        </div>
+                        <div class="feature-card" style="border-left-color: var(--amarelo-acento);">
+                            <h3>B) Empresa não listada</h3>
+                            <p>Crie uma ficha do zero preenchendo todas as informações solicitadas</p>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <h4>💡 Dica importante</h4>
+                        <p>Reivindicar ou criar sua ficha garante que você tenha <strong>controle total</strong> sobre como sua empresa aparece nas buscas do Google e no Maps.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Passo 2 -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Nome e Categoria da Empresa</div>
+                </div>
+                <div class="step-content">
+                    <h4>Nome da Empresa</h4>
+                    <p>Escreva o nome da empresa exatamente como aparece em seus registros oficiais e nas redes sociais.</p>
+
+                    <div class="visual-box">
+                        <div class="visual-box-content">
+                            <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&h=400&fit=crop" alt="Formulário de nome da empresa" style="max-width: 100%; border-radius: 10px; margin-top: 20px;">
+                            <h4 style="margin-top: 20px;">Campo de Nome</h4>
+                            <p>Digite o nome oficial da sua empresa sem adicionar palavras-chave extras</p>
+                        </div>
+                    </div>
+
+                    <h4>Categoria</h4>
+                    <p>Escolha a categoria que melhor representa seu negócio. Isso é crucial para o Google entender sua área de atuação e mostrar seu negócio para as pessoas certas.</p>
+
+                    <div class="visual-box">
+                        <div class="visual-box-content">
+                            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=400&fit=crop" alt="Seleção de categoria" style="max-width: 100%; border-radius: 10px; margin-top: 20px;">
+                            <h4 style="margin-top: 20px;">Seleção de Categoria</h4>
+                            <p>O Google oferece centenas de categorias. Escolha a mais específica possível</p>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-danger">
+                        <h4>⚠️ Aviso sobre palavras-chave</h4>
+                        <p>Segundo as políticas do Google, <strong>não é permitido o uso excessivo de palavras-chave</strong> no nome. Utilize apenas uma palavra-chave, caso deseje, mas o uso é opcional.</p>
+                        <div class="example-box">
+                            <p class="example-incorrect"><strong>❌ Incorreto:</strong> "Restaurante Sabor Italiano Pizzaria Massas Delivery Centro"</p>
+                            <p class="example-correct"><strong>✅ Correto:</strong> "Restaurante Sabor Italiano"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Passo 3 -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Informações de Contato</div>
+                </div>
+                <div class="step-content">
+                    <p>Complete todas as informações de contato para facilitar que os clientes entrem em contato ou visitem seu estabelecimento:</p>
+
+                    <div class="visual-box">
+                        <div class="visual-box-content">
+                            <img src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=800&h=400&fit=crop" alt="Formulário de contato" style="max-width: 100%; border-radius: 10px; margin-top: 20px;">
+                            <h4 style="margin-top: 20px;">Formulário de Informações</h4>
+                            <p>Preencha todos os campos disponíveis para aumentar sua credibilidade</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-grid">
+                        <div class="feature-card" style="border-left-color: #28A745;">
+                            <h3>Telefone</h3>
+                            <p><strong>Obrigatório</strong><br>Número comercial que será exibido publicamente</p>
+                        </div>
+                        <div class="feature-card" style="border-left-color: #28A745;">
+                            <h3>Endereço</h3>
+                            <p><strong>Obrigatório</strong><br>Endereço completo com CEP</p>
+                        </div>
+                        <div class="feature-card" style="border-left-color: #28A745;">
+                            <h3>Horários</h3>
+                            <p><strong>Obrigatório</strong><br>Horários de funcionamento para cada dia</p>
+                        </div>
+                        <div class="feature-card" style="border-left-color: #FFC107;">
+                            <h3>Website</h3>
+                            <p><strong>Recomendado</strong><br>URL completa do seu site</p>
+                        </div>
+                        <div class="feature-card" style="border-left-color: #FFC107;">
+                            <h3>E-mail</h3>
+                            <p><strong>Recomendado</strong><br>E-mail comercial para contato</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>Pagamentos</h3>
+                            <p><strong>Opcional</strong><br>Formas de pagamento aceitas</p>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <h4>💡 Dica importante</h4>
+                        <p>Quanto mais completas forem as informações, maior será a <strong>confiança dos clientes</strong> e melhores serão os resultados nas buscas do Google.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Passo 4 -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Fotos e Vídeos de Qualidade</div>
+                </div>
+                <div class="step-content">
+                    <p>Adicione imagens de alta qualidade do seu estabelecimento, produtos ou serviços. Fotos são fundamentais para atrair clientes!</p>
+
+                    <div class="visual-box">
+                        <div class="visual-box-content">
+                            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=800&h=400&fit=crop" alt="Upload de fotos" style="max-width: 100%; border-radius: 10px; margin-top: 20px;">
+                            <h4 style="margin-top: 20px;">Upload de Mídia</h4>
+                            <p>Arraste e solte suas fotos ou clique para selecionar arquivos</p>
+                        </div>
+                    </div>
+
+                    <h4>Tipos de imagens recomendadas:</h4>
 
                     <div class="feature-grid">
                         <div class="feature-card">
-                            <h3>🎁 Oferta</h3>
-                            <p>Promoções e descontos especiais</p>
+                            <h3>Fachada</h3>
+                            <p>Foto externa do estabelecimento para fácil identificação pelos clientes</p>
                         </div>
                         <div class="feature-card">
-                            <h3>📅 Evento</h3>
-                            <p>Workshops, inaugurações e lançamentos</p>
+                            <h3>Interior</h3>
+                            <p>Ambiente interno, decoração e espaço físico do estabelecimento</p>
                         </div>
                         <div class="feature-card">
-                            <h3>✨ Novidade</h3>
-                            <p>Novos produtos e serviços</p>
+                            <h3>Produtos</h3>
+                            <p>Seus produtos ou resultados de serviços prestados</p>
                         </div>
                         <div class="feature-card">
-                            <h3>📢 Anúncio</h3>
-                            <p>Comunicados gerais importantes</p>
+                            <h3>Equipe</h3>
+                            <p>Sua equipe de trabalho atendendo clientes</p>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <h4>💡 Dica profissional</h4>
+                        <p>Considere criar um <strong>tour virtual 360°</strong> do seu estabelecimento. Isso proporciona uma experiência imersiva para os clientes, permitindo que eles "entrem" no seu espaço sem sair de casa.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Passo 5 -->
+            <div class="step">
+                <div class="step-header">
+                    <div class="step-number">5</div>
+                    <div class="step-title">Postagens Regulares</div>
+                </div>
+                <div class="step-content">
+                    <p>As postagens no Google Meu Negócio são uma excelente maneira de divulgar novidades, ofertas especiais ou promoções para seus clientes:</p>
+
+                    <div class="visual-box">
+                        <div class="visual-box-content">
+                            <img src="https://images.unsplash.com/photo-1432888622747-4eb9a8f2c293?w=800&h=400&fit=crop" alt="Criar postagem" style="max-width: 100%; border-radius: 10px; margin-top: 20px;">
+                            <h4 style="margin-top: 20px;">Criar Postagem</h4>
+                            <p>Adicione texto, imagens e botões de ação para engajar seus clientes</p>
+                        </div>
+                    </div>
+
+                    <h4>Tipos de postagens:</h4>
+
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h3>Oferta</h3>
+                            <p>Promoções e descontos especiais com prazo de validade</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>Evento</h3>
+                            <p>Workshops, inaugurações e lançamentos com data e hora</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>Novidade</h3>
+                            <p>Novos produtos e serviços disponíveis</p>
+                        </div>
+                        <div class="feature-card">
+                            <h3>Anúncio</h3>
+                            <p>Comunicados gerais importantes para os clientes</p>
                         </div>
                     </div>
 
@@ -650,6 +897,7 @@
                             <li>Mantém seu perfil ativo e engajado com seus clientes</li>
                             <li>Aumenta a visibilidade (o Google prioriza perfis ativos)</li>
                             <li>Comunica promoções diretamente aos clientes interessados</li>
+                            <li>Gera mais interações e visitas ao seu estabelecimento</li>
                         </ul>
                     </div>
                 </div>
@@ -663,44 +911,49 @@
                 </div>
                 <div class="step-content">
                     <div class="highlight-box">
-                        <h3>★★★★★</h3>
+                        <h3>⭐⭐⭐⭐⭐</h3>
                         <p>As avaliações são um dos <strong>maiores fatores de ranqueamento</strong> no Google. Quanto mais avaliações positivas você tiver, maior será sua visibilidade!</p>
                     </div>
 
-                    <div class="screenshot">
-                        📸 Imagem: Seção de avaliações no perfil do Google Meu Negócio
-                        <br><br>
-                        <!-- <img src="images/passo6-avaliacoes.png" alt="Avaliações de clientes"> -->
+                    <div class="visual-box">
+                        <div class="visual-box-content">
+                            <img src="https://images.unsplash.com/photo-1556745753-b2904692b3cd?w=800&h=400&fit=crop" alt="Avaliações de clientes" style="max-width: 100%; border-radius: 10px; margin-top: 20px;">
+                            <h4 style="margin-top: 20px;">Seção de Avaliações</h4>
+                            <p>Seus clientes podem deixar avaliações, fotos e comentários sobre sua empresa</p>
+                        </div>
                     </div>
 
                     <div class="feature-grid">
                         <div class="feature-card">
-                            <h3>🔍 Visibilidade</h3>
-                            <p>Melhor posicionamento nas buscas do Google</p>
+                            <h3>Visibilidade</h3>
+                            <p>Melhor posicionamento nas buscas do Google e no Maps</p>
                         </div>
                         <div class="feature-card">
-                            <h3>✨ Credibilidade</h3>
-                            <p>Mais confiança dos clientes potenciais</p>
+                            <h3>Credibilidade</h3>
+                            <p>Mais confiança dos clientes potenciais ao ver avaliações positivas</p>
                         </div>
                         <div class="feature-card">
-                            <h3>💬 Feedback</h3>
-                            <p>Identifique pontos fortes e oportunidades de melhoria</p>
+                            <h3>Feedback</h3>
+                            <p>Identifique pontos fortes e oportunidades de melhoria no seu negócio</p>
                         </div>
                     </div>
 
-                    <h4 style="font-family: 'Montserrat', sans-serif; font-size: 22px; margin: 30px 0 20px; color: var(--azul-principal);">Como incentivar avaliações:</h4>
+                    <h4>Como incentivar avaliações:</h4>
 
                     <ul class="check-list">
-                        <li>Crie um QR code que direcione para a página de avaliação</li>
+                        <li>Crie um QR code que direcione para a página de avaliação e coloque em locais visíveis</li>
                         <li>Envie o link de avaliação por WhatsApp após o atendimento</li>
                         <li>Treine sua equipe para solicitar avaliações no momento certo</li>
                         <li>Responda sempre às avaliações recebidas (positivas e negativas)</li>
+                        <li>Agradeça os clientes que deixarem avaliações positivas</li>
                     </ul>
 
-                    <div class="screenshot">
-                        📸 Imagem: Exemplo de QR Code para avaliações
-                        <br><br>
-                        <!-- <img src="images/passo6-qrcode.png" alt="QR Code avaliações"> -->
+                    <div class="visual-box">
+                        <div class="visual-box-content">
+                            <img src="https://images.unsplash.com/photo-1614680376593-902f74cf0d41?w=800&h=400&fit=crop" alt="QR Code" style="max-width: 100%; border-radius: 10px; margin-top: 20px;">
+                            <h4 style="margin-top: 20px;">QR Code para Avaliações</h4>
+                            <p>Gere um QR code no Google que leva direto para sua página de avaliações</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -714,27 +967,29 @@
                 <div class="step-content">
                     <p>Com o tempo, é fundamental verificar regularmente se as informações da sua empresa continuam corretas:</p>
 
-                    <div class="screenshot">
-                        📸 Imagem: Painel de edição de informações
-                        <br><br>
-                        <!-- <img src="images/passo7-edicao.png" alt="Editar informações"> -->
+                    <div class="visual-box">
+                        <div class="visual-box-content">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop" alt="Painel de edição" style="max-width: 100%; border-radius: 10px; margin-top: 20px;">
+                            <h4 style="margin-top: 20px;">Painel de Edição</h4>
+                            <p>Acesse facilmente todas as informações para manter seu perfil sempre atualizado</p>
+                        </div>
                     </div>
 
                     <div class="feature-grid">
                         <div class="feature-card">
-                            <h3>🕐 Horários de Funcionamento</h3>
+                            <h3>Horários de Funcionamento</h3>
                             <p>Atualize sempre que houver mudanças, especialmente em feriados ou períodos especiais</p>
                         </div>
                         <div class="feature-card">
-                            <h3>💳 Formas de Pagamento</h3>
-                            <p>Adicione novas opções de pagamento quando disponíveis</p>
+                            <h3>Formas de Pagamento</h3>
+                            <p>Adicione novas opções de pagamento quando disponíveis (Pix, cartões, etc.)</p>
                         </div>
                         <div class="feature-card">
-                            <h3>📅 Agendamentos</h3>
-                            <p>Informe se é necessário agendar com antecedência</p>
+                            <h3>Agendamentos</h3>
+                            <p>Informe se é necessário agendar com antecedência e como fazer</p>
                         </div>
                         <div class="feature-card">
-                            <h3>📸 Fotos e Vídeos</h3>
+                            <h3>Fotos e Vídeos</h3>
                             <p>Publique conteúdo novo regularmente para manter o perfil ativo</p>
                         </div>
                     </div>
@@ -868,167 +1123,4 @@
         });
     </script>
 </body>
-</html>);">Duas situações possíveis:</h4>
-                    
-                    <div class="grid-2">
-                        <div class="feature-card" style="border-left-color: #28A745;">
-                            <h3>Empresa já listada</h3>
-                            <p>Reivindique a ficha existente seguindo o passo a passo de verificação do Google</p>
-                        </div>
-                        <div class="feature-card" style="border-left-color: var(--amarelo-acento);">
-                            <h3>Empresa não listada</h3>
-                            <p>Crie uma ficha do zero preenchendo todas as informações solicitadas</p>
-                        </div>
-                    </div>
-
-                    <div class="alert alert-info">
-                        <h4>💡 Dica importante</h4>
-                        <p>Reivindicar ou criar sua ficha garante que você tenha <strong>controle total</strong> sobre como sua empresa aparece nas buscas do Google e no Maps.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Passo 2 -->
-            <div class="step">
-                <div class="step-header">
-                    <div class="step-number">2</div>
-                    <div class="step-title">Nome e Categoria da Empresa</div>
-                </div>
-                <div class="step-content">
-                    <h4 style="font-family: 'Montserrat', sans-serif; font-size: 22px; margin-bottom: 15px; color: var(--azul-principal);">Nome da Empresa</h4>
-                    <p>Escreva o nome da empresa exatamente como aparece em seus registros oficiais e nas redes sociais.</p>
-
-                    <div class="screenshot">
-                        📸 Imagem: Campo de preenchimento do nome da empresa
-                        <br><br>
-                        <!-- <img src="images/passo2-nome-empresa.png" alt="Campo nome da empresa"> -->
-                    </div>
-
-                    <h4 style="font-family: 'Montserrat', sans-serif; font-size: 22px; margin: 30px 0 15px; color: var(--azul-principal);">Categoria</h4>
-                    <p>Escolha a categoria que melhor representa seu negócio. Isso é crucial para o Google entender sua área de atuação e mostrar seu negócio para as pessoas certas.</p>
-
-                    <div class="screenshot">
-                        📸 Imagem: Seleção de categoria principal
-                        <br><br>
-                        <!-- <img src="images/passo2-categoria.png" alt="Seleção de categoria"> -->
-                    </div>
-
-                    <div class="alert alert-danger">
-                        <h4>⚠️ Aviso sobre palavras-chave</h4>
-                        <p>Segundo as políticas do Google, <strong>não é permitido o uso excessivo de palavras-chave</strong> no nome. Utilize apenas uma palavra-chave, caso deseje, mas o uso é opcional.</p>
-                        <div style="margin-top: 20px; padding: 20px; background: white; border-radius: 10px;">
-                            <p style="margin-bottom: 15px; color: #DC3545;"><strong>❌ Incorreto:</strong> "Restaurante Sabor Italiano Pizzaria Massas Delivery Centro"</p>
-                            <p style="color: #28A745;"><strong>✅ Correto:</strong> "Restaurante Sabor Italiano"</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Passo 3 -->
-            <div class="step">
-                <div class="step-header">
-                    <div class="step-number">3</div>
-                    <div class="step-title">Informações de Contato</div>
-                </div>
-                <div class="step-content">
-                    <p>Complete todas as informações de contato para facilitar que os clientes entrem em contato ou visitem seu estabelecimento:</p>
-
-                    <div class="screenshot">
-                        📸 Imagem: Formulário de informações de contato completo
-                        <br><br>
-                        <!-- <img src="images/passo3-contato.png" alt="Formulário de contato"> -->
-                    </div>
-
-                    <div class="feature-grid">
-                        <div class="feature-card" style="border-left-color: #28A745;">
-                            <h3>📱 Telefone</h3>
-                            <p><strong>Obrigatório</strong><br>Número comercial que será exibido publicamente</p>
-                        </div>
-                        <div class="feature-card" style="border-left-color: #28A745;">
-                            <h3>📍 Endereço</h3>
-                            <p><strong>Obrigatório</strong><br>Endereço completo com CEP</p>
-                        </div>
-                        <div class="feature-card" style="border-left-color: #28A745;">
-                            <h3>🕐 Horários</h3>
-                            <p><strong>Obrigatório</strong><br>Horários de funcionamento para cada dia</p>
-                        </div>
-                        <div class="feature-card" style="border-left-color: #FFC107;">
-                            <h3>🌐 Website</h3>
-                            <p><strong>Recomendado</strong><br>URL completa do seu site</p>
-                        </div>
-                        <div class="feature-card" style="border-left-color: #FFC107;">
-                            <h3>✉️ E-mail</h3>
-                            <p><strong>Recomendado</strong><br>E-mail comercial para contato</p>
-                        </div>
-                        <div class="feature-card">
-                            <h3>💳 Pagamentos</h3>
-                            <p><strong>Opcional</strong><br>Formas de pagamento aceitas</p>
-                        </div>
-                    </div>
-
-                    <div class="alert alert-info">
-                        <h4>💡 Dica importante</h4>
-                        <p>Quanto mais completas forem as informações, maior será a <strong>confiança dos clientes</strong> e melhores serão os resultados nas buscas do Google.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Passo 4 -->
-            <div class="step">
-                <div class="step-header">
-                    <div class="step-number">4</div>
-                    <div class="step-title">Fotos e Vídeos de Qualidade</div>
-                </div>
-                <div class="step-content">
-                    <p>Adicione imagens de alta qualidade do seu estabelecimento, produtos ou serviços. Fotos são fundamentais para atrair clientes!</p>
-
-                    <div class="screenshot">
-                        📸 Imagem: Seção de upload de fotos no Google Meu Negócio
-                        <br><br>
-                        <!-- <img src="images/passo4-fotos.png" alt="Upload de fotos"> -->
-                    </div>
-
-                    <h4 style="font-family: 'Montserrat', sans-serif; font-size: 22px; margin: 30px 0 20px; color: var(--azul-principal);">Tipos de imagens recomendadas:</h4>
-
-                    <div class="feature-grid">
-                        <div class="feature-card">
-                            <h3>🏢 Fachada</h3>
-                            <p>Foto externa do estabelecimento para fácil identificação</p>
-                        </div>
-                        <div class="feature-card">
-                            <h3>🏠 Interior</h3>
-                            <p>Ambiente interno, decoração e espaço</p>
-                        </div>
-                        <div class="feature-card">
-                            <h3>📦 Produtos</h3>
-                            <p>Seus produtos ou resultados de serviços</p>
-                        </div>
-                        <div class="feature-card">
-                            <h3>👥 Equipe</h3>
-                            <p>Sua equipe de trabalho atendendo clientes</p>
-                        </div>
-                    </div>
-
-                    <div class="alert alert-info">
-                        <h4>💡 Dica profissional</h4>
-                        <p>Considere criar um <strong>tour virtual 360°</strong> do seu estabelecimento. Isso proporciona uma experiência imersiva para os clientes, permitindo que eles "entrem" no seu espaço sem sair de casa.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Passo 5 -->
-            <div class="step">
-                <div class="step-header">
-                    <div class="step-number">5</div>
-                    <div class="step-title">Postagens Regulares</div>
-                </div>
-                <div class="step-content">
-                    <p>As postagens no Google Meu Negócio são uma excelente maneira de divulgar novidades, ofertas especiais ou promoções para seus clientes:</p>
-
-                    <div class="screenshot">
-                        📸 Imagem: Interface de criação de postagens
-                        <br><br>
-                        <!-- <img src="images/passo5-postagens.png" alt="Criar postagem"> -->
-                    </div>
-
-                    <h4 style="font-family: 'Montserrat', sans-serif; font-size: 22px; margin: 30px 0 20px; color: var(--azul-principal
+</html>
